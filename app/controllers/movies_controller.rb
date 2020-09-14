@@ -11,10 +11,16 @@ class MoviesController < ApplicationController
   end
 
   def index
-    #@movies = Movie.all
-    @movies = Movie.order(params[:sort_asc])
-  end
+    @all_ratings = Movie.all_ratings
+    @movies = Movie.all
+    if params[:ratings]
+      @movies = Movie.where(:rating => params[:ratings].keys)
+    end
 
+    @movies = @movies.order(params[:sort_asc])
+    @highlight = params[:sort_asc]
+  end
+    
   def new
     # default: render 'new' template
   end
