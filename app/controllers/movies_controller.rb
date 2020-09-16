@@ -25,7 +25,7 @@ class MoviesController < ApplicationController
     
     @movies = @movies.order(@sort_asc)
 
-    @checked_ratings = nil
+    @checked_ratings = @all_ratings
     
     if params[:ratings]
       session[:ratings] = params[:ratings]
